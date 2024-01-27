@@ -33,8 +33,14 @@ public class CardVisualizer : MonoBehaviour
         }
     }
 
-    public Card getCard()
+    public Card GetCard()
     {
         return card;
+    }
+
+    public void SetCard(Card card)
+    {
+        this.card = card;
+        OnValidate();
     }
 }

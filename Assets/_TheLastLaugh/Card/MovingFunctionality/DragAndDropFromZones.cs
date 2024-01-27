@@ -11,7 +11,7 @@ public class DragAndDropFromZones : MonoBehaviour
     private void Start()
     {
         _initialPosition = transform.position;
-        _card = GetComponent<CardVisualizer>().getCard();
+        _card = GetComponent<CardVisualizer>().GetCard();
         _currentDropZone = GetComponentInParent<DropZone>();
     }
 
@@ -71,5 +71,11 @@ public class DragAndDropFromZones : MonoBehaviour
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
         return GetComponent<Collider2D>().OverlapPoint(mousePosition);
+    }
+
+    public void SetDropZone(DropZone dropZone)
+    {
+        _currentDropZone = dropZone;
+        transform.parent = dropZone.transform;
     }
 }

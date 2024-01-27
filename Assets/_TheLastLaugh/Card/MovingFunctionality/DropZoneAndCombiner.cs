@@ -5,18 +5,21 @@ public class DropZoneAndCombiner : DropZone
 {
     public static Action<CardsCombined> OnCardsCombined;
     [SerializeField] private GameObject _confirmButton;
-
-    private void OnEnable() {
+    [SerializeField] private DeckController _hand;
+    private void OnEnable()
+    {
         _confirmButton.GetComponent<ConfirmButton>().OnConfirmButtonClicked += CombineCards;
     }
-    
-    private void OnDisable() {
+
+    private void OnDisable()
+    {
         _confirmButton.GetComponent<ConfirmButton>().OnConfirmButtonClicked -= CombineCards;
     }
 
 
-    private void Start() {
-        _confirmButton.SetActive(false);   
+    private void Start()
+    {
+        _confirmButton.SetActive(false);
     }
 
     private void CombineCards()
@@ -28,6 +31,19 @@ public class DropZoneAndCombiner : DropZone
             cardsCombined.cardStat2 = _cards[1].stats;
             OnCardsCombined?.Invoke(cardsCombined);
         }
+
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<CardVisualizer>() != null)
+            {
+                _hand.RemoveCard(child.GetComponent<CardVisualizer>().GetCard());
+
+                Destroy(child.gameObject);
+
+            }
+        }
+
+        _cards.Clear();
     }
 
     private void Update()

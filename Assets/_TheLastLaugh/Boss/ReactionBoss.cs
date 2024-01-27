@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class ReactionBoss : MonoBehaviour
 {
+    public static Action<float> OnBossInteraction;
+    public static Action OnBossDied;
     [SerializeField] private BossStats bossStats;
     private float _health, _currentHealth;
 
@@ -12,7 +14,6 @@ public class ReactionBoss : MonoBehaviour
 
     private void OnCardsCombined(CardsCombined combined)
     {
-        // if the result es >0.5 the boss is not hit and the player is hit, else the boss is hit and the player is not hit
         float result = 0;
         foreach (BossStat bossStat in bossStats.bossStats)
         {
@@ -28,13 +29,18 @@ public class ReactionBoss : MonoBehaviour
 
         if (result < 0.5f)
         {
-            Debug.Log("Player is hit");
+            result = 0;
+            OnBossInteraction?.Invoke(result);
         }
         else
         {
-            Debug.Log("Boss is hit");
             _currentHealth -= result;
-            Debug.Log(_currentHealth);
+            OnBossInteraction?.Invoke(result);
+
+            if (_currentHealth <= 0)
+            {
+                OnBossDied?.Invoke();
+            }
         }
     }
 

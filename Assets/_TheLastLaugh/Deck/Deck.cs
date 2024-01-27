@@ -19,6 +19,42 @@ public class Deck : ScriptableObject
         }
     }
 
+    public void ShuffleIntoPairs()
+    {
+        Deck tempDeck1 = ScriptableObject.CreateInstance<Deck>();
+        Deck tempDeck2 = ScriptableObject.CreateInstance<Deck>();
+
+        foreach (Card card in cards)
+        {
+            if (card.startOrrEnd == CardType.Start)
+            {
+                tempDeck1.AddCard(card);
+            }
+            else
+            {
+                tempDeck2.AddCard(card);
+            }
+        }
+
+        tempDeck1.Shuffle();
+        tempDeck2.Shuffle();
+
+        cards.Clear();
+
+        while (tempDeck1.cards.Count > 0 || tempDeck2.cards.Count > 0)
+        {
+            if (tempDeck1.cards.Count > 0)
+            {
+                cards.Add(tempDeck1.Draw());
+            }
+
+            if (tempDeck2.cards.Count > 0)
+            {
+                cards.Add(tempDeck2.Draw());
+            }
+        }
+    }
+
     public Card Draw(out bool empty)
     {
         if (cards.Count == 0)

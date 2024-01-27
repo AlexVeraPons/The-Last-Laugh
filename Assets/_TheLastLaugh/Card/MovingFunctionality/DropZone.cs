@@ -4,14 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class DropZone : MonoBehaviour
 {
-    protected List<Card> _cards = new List<Card>();
+    [SerializeField] protected List<Card> _cards = new List<Card>();
     [SerializeField] private int _maxCards;
     public bool IsFull => _cards.Count >= _maxCards;
 
     private void Start() {
         foreach (Transform child in transform)
         {
-            Card card = child.GetComponent<CardVisualizer>().getCard();
+            Card card = child.GetComponent<CardVisualizer>()?.GetCard();
             if (card != null)
             {
                 _cards.Add(card);
