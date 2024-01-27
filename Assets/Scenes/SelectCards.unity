@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee552709f778530409bab930dbbadb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ResetDeckAfterSession: 0
+  ResetDeckAfterSession: 1
   YesNoShuffle: 0
   deck: {fileID: 11400000, guid: cc004897dc846ef4aaeb535975c245b8, type: 2}
 --- !u!4 &1998777282
@@ -680,7 +680,8 @@ MonoBehaviour:
   _shownCards: {fileID: 316286711}
   _selectionZonePrefab: {fileID: 1681266103172793986, guid: 241d17935d9312e43897830c1b382651, type: 3}
   _confirmButton: {fileID: 1993631041}
-  _numberOfCardsToSelect: 3
+  _numberOfCardsToShow: 3
+  _numberOfCardsToSelect: 1
   _selectionZonesPositions:
   - {fileID: 308778326}
   - {fileID: 1008782655}

@@ -12,8 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99959a157855e84d8aff712ee9601a2, type: 3}
   m_Name: Hand
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 11400000, guid: f10cd891816d9f9438139d517f5fdd89, type: 2}
-  - {fileID: 11400000, guid: f10cd891816d9f9438139d517f5fdd89, type: 2}
-  - {fileID: 11400000, guid: 8a2205c9329e0c24bbf088e4af806e3f, type: 2}
-  - {fileID: 11400000, guid: 8a2205c9329e0c24bbf088e4af806e3f, type: 2}
+  cards: []
