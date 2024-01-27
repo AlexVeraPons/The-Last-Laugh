@@ -31,6 +31,7 @@ public class HangedBarVisualizer : MonoBehaviour
     {
         ReactionBoss.OnBossInteraction += OnBossInteraction;
         GameLoop.GameLoopEnded += Stop;
+        GameLoop.GameLoopStarted += StartNewTurn;
     }
 
     private void OnBossInteraction(float value)
@@ -156,5 +157,13 @@ public class HangedBarVisualizer : MonoBehaviour
         _isDecreasing = false;
         _barSpriteRenderer.enabled = false;
         _hangedIcon.gameObject.SetActive(false);
+    }
+
+    private void StartNewTurn()
+    {
+        _isDecreasing = true;
+        _barSpriteRenderer.enabled = true;
+        _hangedIcon.gameObject.SetActive(true);
+        _currentHealth += _increaseWhenBossHit*1.5f >= _health ? _health : _increaseWhenBossHit*1.5f;
     }
 }

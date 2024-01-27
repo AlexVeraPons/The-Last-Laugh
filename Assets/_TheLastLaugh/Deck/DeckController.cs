@@ -9,38 +9,54 @@ public class DeckController : MonoBehaviour
     public Action<Deck> OnDrawn;
     [SerializeField] private bool ResetDeckAfterSession = false;
     [SerializeField] private bool YesNoShuffle = true;
+    [SerializeField] private bool ClearOnStart = false;
+    [SerializeField] private bool UseNewDeck = false;
     [SerializeField] private Deck deck;
     private Deck _deckInitialState;
 
     private void OnEnable()
     {
-        GameLoop.GameLoopStarted += CopyDeck;
-        GameLoop.GameLoopEnded += ResetDeck;
+        CoreLoop.OnEnterCombat += CopyDeck;
+        CoreLoop.OnExitCombat += ResetDeck;
+        CopyDeck();
     }
 
     private void OnDisable()
     {
         GameLoop.GameLoopStarted -= CopyDeck;
-        GameLoop.GameLoopEnded -= ResetDeck;
+        CoreLoop.OnExitCombat -= ResetDeck;
 
         ResetDeck();
     }
 
     private void Start()
     {
-        CopyDeck();
+        if (UseNewDeck)
+        {
+            deck = Instantiate(deck);
+            deck.CreateDeck();
+        }
+        if (ClearOnStart)
+        {
+            Clear();
+        }
     }
 
     private void CopyDeck()
     {
         _deckInitialState = Instantiate(deck);
         _deckInitialState.name = deck.name;
-        _deckInitialState.cards = new List<Card>(deck.cards);
+        _deckInitialState.cards = new List<Card>();
+
+        foreach (Card card in deck.cards)
+        {
+            _deckInitialState.AddCard(card);
+        }
     }
 
     private void ResetDeck()
     {
-        if (!ResetDeckAfterSession) return;
+        if (ResetDeckAfterSession == false) return;
         deck.cards = new List<Card>(_deckInitialState.cards);
         OnDeckChanged?.Invoke(deck);
     }

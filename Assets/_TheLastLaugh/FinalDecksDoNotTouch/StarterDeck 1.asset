@@ -9,16 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382b80f99e8ac56479e100f78271ec3f, type: 3}
-  m_Name: BossStats
+  m_Script: {fileID: 11500000, guid: f99959a157855e84d8aff712ee9601a2, type: 3}
+  m_Name: StarterDeck 1
   m_EditorClassIdentifier: 
-  bossStats:
-  - stat: 0
-    value: 0.5
-  - stat: 2
-    value: 0
-  - stat: 1
-    value: 1
-  - stat: 1
-    value: 0
-  _health: 6057.92
+  cards: []

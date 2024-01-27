@@ -55,4 +55,9 @@ public class SelectionController : MonoBehaviour
             _selectionIndicator.SetActive(false);
         }
     }
+
+    public Card GetCard()
+    {
+        return _cardVisualizer.GetCard();
+    }
 }

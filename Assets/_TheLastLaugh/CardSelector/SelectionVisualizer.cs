@@ -17,7 +17,7 @@ public class SelectionVisualizer : MonoBehaviour
     [SerializeField] private int _numberOfCardsToShow = 3;
     [SerializeField] private int _numberOfCardsToSelect = 1;
 
-
+    [SerializeField] private GameObject _background;
 
     private List<SelectionController> _selectionZones = new List<SelectionController>();
     [SerializeField] private List<Transform> _selectionZonesPositions = new List<Transform>();
@@ -31,17 +31,31 @@ public class SelectionVisualizer : MonoBehaviour
         _confirmButton.OnConfirmButtonClicked+= ConfirmSelection;
         _confirmButton.gameObject.SetActive(false);
 
+        _background.SetActive(false);
     }
 
     private void ConfirmSelection()
     {
+        _selectedCards.Clear();
+        foreach (SelectionController selectionZone in _selectionZones)
+        {
+            if (selectionZone.IsSelected() == true)
+            {
+                Debug.Log("Selected card" + selectionZone.GetCard().name);
+                _selectedCards.Add(selectionZone.GetCard());
+            }
+        }
+        Debug.Log("Selected cards count" + _selectedCards.Count);
+
+        _playerDeck.AddCards(_selectedCards); 
+
+        
         foreach (Card card in _selectedCards)
         {
             _shownCards.RemoveCard(card);
         }
 
         _availableCards.AddCards(_shownCards.GetCards());
-        _playerDeck.AddCards(_selectedCards);
         _selectedCards.Clear();
         _shownCards.Clear();
 
@@ -51,9 +65,10 @@ public class SelectionVisualizer : MonoBehaviour
         }
 
         _selectionZones.Clear();
-        _selectionZonesPositions.Clear();
 
         OnSelectedCards?.Invoke();
+
+        _background.SetActive(false);
     }
 
     private void OnDisable() {
@@ -62,6 +77,8 @@ public class SelectionVisualizer : MonoBehaviour
     }
     private void ShowCard()
     {
+        _background.SetActive(true);
+
         for (int i = 0; i < _numberOfCardsToShow; i++)
         {
             Card card = _availableCards.Draw();
@@ -70,7 +87,6 @@ public class SelectionVisualizer : MonoBehaviour
                 break;
             }
             _shownCards.AddCard(card);
-            Debug.Log("Drawn card: " + card.name);
         }
 
         //foreach card in shown cards 
@@ -86,6 +102,7 @@ public class SelectionVisualizer : MonoBehaviour
             _selectionZones.Add(selectionZone);
             _selectionZonesPositions.Add(selectionZoneObject.transform);
             selectionZoneObject.transform.position = _selectionZonesPositions[index].position;
+            selectionZoneObject.transform.SetParent(transform);
             index++;
         }
     }
@@ -111,7 +128,6 @@ public class SelectionVisualizer : MonoBehaviour
                     count++;
                 }
             }
-            Debug.Log("Count: " + count);
             return count;
         }
     }
