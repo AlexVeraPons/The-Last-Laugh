@@ -10,6 +10,7 @@ public class CardVisualizer : MonoBehaviour
     [SerializeField] private SpriteRenderer FrontSpriteRenderer;
     [SerializeField] private SpriteRenderer BackSpriteRenderer;
     [SerializeField] private CardType cardTypeSprite;
+    [SerializeField] private IconSelector _iconSelector;
 
 
     private void OnValidate()
@@ -31,6 +32,8 @@ public class CardVisualizer : MonoBehaviour
             FrontSpriteRenderer.enabled = false;
             BackSpriteRenderer.enabled = true;
         }
+
+        _iconSelector.ShowIcon(card.stats);
     }
 
     public Card GetCard()

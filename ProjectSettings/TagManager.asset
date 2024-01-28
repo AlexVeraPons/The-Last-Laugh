@@ -41,9 +41,9 @@ TagManager:
   - name: Text
     uniqueID: 3495528663
     locked: 0
-  - name: Front
-    uniqueID: 618885657
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 618885657
     locked: 0
