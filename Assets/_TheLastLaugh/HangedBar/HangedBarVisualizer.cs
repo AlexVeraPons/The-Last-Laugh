@@ -110,8 +110,6 @@ public class HangedBarVisualizer : MonoBehaviour
     private void Update()
     {
 
-
-
         if (_currentHealth <= 0)
         {
             OnHangedBarReachedEnd?.Invoke();
@@ -130,8 +128,8 @@ public class HangedBarVisualizer : MonoBehaviour
 
     private void UpdateIconPosition()
     {
-        float x = _barSpriteRenderer.bounds.min.x + (_barSpriteRenderer.bounds.size.x * (1 - _currentHealth / _health));
-        _hangedIcon.position = new Vector3(x, _hangedIcon.position.y, _hangedIcon.position.z);
+        Bounds bounds = _barSpriteRenderer.bounds;
+        _hangedIcon.position = new Vector3(bounds.min.x + bounds.size.x * (1 - (_currentHealth / _health)), _hangedIcon.position.y, _hangedIcon.position.z);
     }
 
     private IEnumerator DecreaseBarWhenHit()
@@ -164,6 +162,10 @@ public class HangedBarVisualizer : MonoBehaviour
         _isDecreasing = true;
         _barSpriteRenderer.enabled = true;
         _hangedIcon.gameObject.SetActive(true);
-        _currentHealth += _increaseWhenBossHit*1.5f >= _health ? _health : _increaseWhenBossHit*1.5f;
+
+        if (_currentHealth  + _increaseWhenBossHit*1.5 >= _health)
+        {
+            _currentHealth = _health;
+        }
     }
 }

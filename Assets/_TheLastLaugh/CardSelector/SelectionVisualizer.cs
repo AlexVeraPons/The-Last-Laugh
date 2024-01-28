@@ -18,6 +18,7 @@ public class SelectionVisualizer : MonoBehaviour
     [SerializeField] private int _numberOfCardsToSelect = 1;
 
     [SerializeField] private GameObject _background;
+    [SerializeField] private GameObject _text;
 
     private List<SelectionController> _selectionZones = new List<SelectionController>();
     [SerializeField] private List<Transform> _selectionZonesPositions = new List<Transform>();
@@ -32,6 +33,7 @@ public class SelectionVisualizer : MonoBehaviour
         _confirmButton.gameObject.SetActive(false);
 
         _background.SetActive(false);
+        _text.SetActive(false);
     }
 
     private void ConfirmSelection()
@@ -69,6 +71,7 @@ public class SelectionVisualizer : MonoBehaviour
         OnSelectedCards?.Invoke();
 
         _background.SetActive(false);
+        _text.SetActive(false);
     }
 
     private void OnDisable() {
@@ -78,6 +81,7 @@ public class SelectionVisualizer : MonoBehaviour
     private void ShowCard()
     {
         _background.SetActive(true);
+        _text.SetActive(true);
 
         for (int i = 0; i < _numberOfCardsToShow; i++)
         {

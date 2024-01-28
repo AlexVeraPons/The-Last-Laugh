@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cards.unity
     guid: 7202dc7850e86c2428bc55c72438fd17
-  - enabled: 0
-    path: Assets/Scenes/Deck.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/YouWinScene.unity
+    guid: b8bb6cbea6726a641b42958f37d5e248
+  - enabled: 1
+    path: Assets/Scenes/YouLoseScene.unity
+    guid: 7f20c0c7db36964489adc05675b825c7
   m_configObjects: {}

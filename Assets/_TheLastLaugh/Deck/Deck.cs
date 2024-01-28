@@ -45,6 +45,8 @@ public class Deck : ScriptableObject
         cards.Clear();
 
         // alternate between the two decks and add them to the main deck
+        Debug.Log("tempDeck1 count: " + tempDeck1.cards.Count);
+        Debug.Log("tempDeck2 count: " + tempDeck2.cards.Count);
         for (int i = 0; i < tempDeck1.cards.Count; i++)
         {
             cards.Add(tempDeck1.cards[i]);
@@ -93,13 +95,13 @@ public class Deck : ScriptableObject
 
     public void RemoveCard(Card card)
     {
-        if (cards.Contains(card))
+        foreach (Card cardInDeck in cards)
         {
-            cards.Remove(card);
-        }
-        else
-        {
-            Debug.LogError("Card not found in deck");
+            if (cardInDeck.cardText == card.cardText)
+            {
+                cards.Remove(cardInDeck);
+                return;
+            }
         }
     }
 }

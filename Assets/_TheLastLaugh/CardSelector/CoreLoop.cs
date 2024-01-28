@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoreLoop : MonoBehaviour
 {
@@ -27,6 +28,12 @@ public class CoreLoop : MonoBehaviour
     {
         GameLoop.GameLoopEnded += GameLoopEnded;
         SelectionVisualizer.OnSelectedCards += SelectCardsDone;
+        HangedBarVisualizer.OnHangedBarReachedEnd += YouDied;
+    }
+
+    private void YouDied()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+2);
     }
 
     private void Start()
@@ -41,8 +48,7 @@ public class CoreLoop : MonoBehaviour
             OnSelectCardsDone?.Invoke();
             _currentState = State.Combat;
             OnEnterCombat?.Invoke();
-            _selectedDone = 0;
-        }
+            _selectedDone = 0;        }
     }
 
     private void GameLoopEnded()
@@ -58,18 +64,12 @@ public class CoreLoop : MonoBehaviour
         else
         {
             OnEnd?.Invoke();
+            EndGame();
         }
     }
 
-    private void Update()
+    private void EndGame()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameLoopEnded();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            SelectCardsDone();
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

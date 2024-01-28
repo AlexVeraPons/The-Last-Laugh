@@ -12,7 +12,10 @@ public class CardVisualizer : MonoBehaviour
     [SerializeField] private CardType cardTypeSprite;
     [SerializeField] private IconSelector _iconSelector;
 
-
+    private void Start()
+    {
+        OnValidate();
+    }
     private void OnValidate()
     {
         if (card == null)

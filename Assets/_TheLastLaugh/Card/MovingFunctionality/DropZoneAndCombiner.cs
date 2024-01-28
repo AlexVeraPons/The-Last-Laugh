@@ -39,7 +39,6 @@ public class DropZoneAndCombiner : DropZone
                 _hand.RemoveCard(child.GetComponent<CardVisualizer>().GetCard());
 
                 Destroy(child.gameObject);
-
             }
         }
 
