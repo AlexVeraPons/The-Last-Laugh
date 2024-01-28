@@ -17,8 +17,20 @@ public class BossStats : ScriptableObject
 
         bossStats.Add(new BossStat(CardStat.Dark, 0));
         bossStats.Add(new BossStat(CardStat.Parody, 0));
-        bossStats.Add(new BossStat(CardStat.Surreal,   0));
-        bossStats.Add(new BossStat(CardStat.Surreal, 0));
+        bossStats.Add(new BossStat(CardStat.Surreal,  0));
+        bossStats.Add(new BossStat(CardStat.Self, 0));
+    }
+
+    public void SetStat(CardStat stat, float value)
+    {
+        foreach (BossStat bossStat in bossStats)
+        {
+            if (bossStat.stat == stat)
+            {
+                bossStat.value = value;
+                return;
+            }
+        }
     }
 }
 

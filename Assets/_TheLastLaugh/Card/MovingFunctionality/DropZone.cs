@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,5 +36,23 @@ public class DropZone : MonoBehaviour
             return;
         }
         _cards.Remove(card);
+    }
+
+    internal bool CanFit(CardType startOrrEnd)
+    {
+        if (_cards.Count >= _maxCards)
+        {
+            return false;
+        }
+
+        if (_cards.Count == 1 && _maxCards == 2)
+        {
+            if (_cards[0].startOrrEnd == startOrrEnd)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
