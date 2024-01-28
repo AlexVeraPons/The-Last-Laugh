@@ -9,7 +9,7 @@ public class Card : ScriptableObject
     [Header("Card Stats")]
     public CardStat stats;
 
-    public DeckController deck;
+    [HideInInspector]public DeckController deck;
 }
 public enum CardType
 {
