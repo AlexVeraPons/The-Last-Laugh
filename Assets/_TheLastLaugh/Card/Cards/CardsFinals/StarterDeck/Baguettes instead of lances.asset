@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Baguettes instead of lances
   m_EditorClassIdentifier: 
   cardText: Baguettes instead of lances
-  startOrrEnd: 1
-  stats: 2
+  startOrrEnd: 0
+  stats: 0
   deck: {fileID: 0}

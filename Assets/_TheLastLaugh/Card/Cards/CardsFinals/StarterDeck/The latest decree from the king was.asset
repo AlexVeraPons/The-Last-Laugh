@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a37ade6915af7b146b2354990116fb09, type: 3}
-  m_Name: The blacksmith's latest invention is a sword that
+  m_Name: The latest decree from the king was
   m_EditorClassIdentifier: 
-  cardText: The blacksmith's latest invention is a sword that
+  cardText: ' The latest decree from the king was'
   startOrrEnd: 0
-  stats: 3
+  stats: 0
   deck: {fileID: 0}

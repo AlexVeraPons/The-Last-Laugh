@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a37ade6915af7b146b2354990116fb09, type: 3}
-  m_Name: The fearsome dragon in the local legend is actually terrified of
+  m_Name: Reverse gravity
   m_EditorClassIdentifier: 
-  cardText: The fearsome dragon in the local legend is actually terrified of
-  startOrrEnd: 0
-  stats: 1
+  cardText: Reverse gravity
+  startOrrEnd: 1
+  stats: 0
   deck: {fileID: 0}

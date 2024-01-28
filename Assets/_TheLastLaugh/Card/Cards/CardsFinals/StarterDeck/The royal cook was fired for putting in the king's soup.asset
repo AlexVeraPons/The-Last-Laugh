@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a37ade6915af7b146b2354990116fb09, type: 3}
-  m_Name: The epic poem recited at the feast tells of a quest to find the legendary
+  m_Name: The royal cook was fired for putting in the king's soup
   m_EditorClassIdentifier: 
-  cardText: The epic poem recited at the feast tells of a quest to find the legendary
+  cardText: The royal cook was fired for putting in the king's soup
   startOrrEnd: 0
-  stats: 2
+  stats: 0
   deck: {fileID: 0}
