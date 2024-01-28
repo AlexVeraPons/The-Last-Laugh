@@ -13,6 +13,8 @@ public class DragAndDropFromZones : MonoBehaviour
 
     private Vector3 _originalScale;
 
+    private AudioSource _audioSource;
+
     private void OnEnable() {
         GameLoop.OnBossReaction += SetCanBeDraggedFalse;
         GameLoop.OnBossReactionEnded += SetCanBeDraggedTrue;
@@ -30,6 +32,7 @@ public class DragAndDropFromZones : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _initialPosition = transform.position;
         _card = GetComponent<CardVisualizer>().GetCard();
         _currentDropZone = GetComponentInParent<DropZone>();
@@ -48,6 +51,8 @@ public class DragAndDropFromZones : MonoBehaviour
     {
         if (IsMouseOver() && _canBeDragged)
         {
+            _audioSource.Play();
+
             _initialPosition = transform.position;
             _isDragging = true;
 
@@ -58,7 +63,7 @@ public class DragAndDropFromZones : MonoBehaviour
     public void OnMouseRelease(Vector2 mousePosition)
     {
         if (!_isDragging) return;
-
+        _audioSource.Play();
         _isDragging = false;
 
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);

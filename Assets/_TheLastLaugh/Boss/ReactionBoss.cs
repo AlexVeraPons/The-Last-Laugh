@@ -8,7 +8,13 @@ public class ReactionBoss : MonoBehaviour
     [SerializeField] private BossStats bossStats;
     private float _health, _currentHealth;
 
-    private void OnEnable() {
+    private void Start()
+    {
+        _health = 10000000f;
+        _currentHealth = _health;
+    }
+    private void OnEnable()
+    {
         DropZoneAndCombiner.OnCardsCombined += OnCardsCombined;
     }
 
@@ -42,10 +48,5 @@ public class ReactionBoss : MonoBehaviour
                 OnBossDied?.Invoke();
             }
         }
-    }
-
-    private void Start() {
-        _health = bossStats._health;
-        _currentHealth = _health;
     }
 }
