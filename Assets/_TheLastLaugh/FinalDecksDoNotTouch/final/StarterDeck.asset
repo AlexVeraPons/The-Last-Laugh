@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99959a157855e84d8aff712ee9601a2, type: 3}
   m_Name: StarterDeck
   m_EditorClassIdentifier: 
-  cards: []
+  cards:
+  - {fileID: 11400000, guid: b3697df4936975d459376ee29842d522, type: 2}
+  - {fileID: 11400000, guid: bcab1093e15820c418da80e8c0b3603d, type: 2}
+  - {fileID: 11400000, guid: e184a6dcc7dd74446ad9a27bef26c01c, type: 2}
+  - {fileID: 11400000, guid: 3e939305dccada846bbb38042d89a809, type: 2}
+  - {fileID: 11400000, guid: 59eb0008838065d4f8f87d182e864329, type: 2}
+  - {fileID: 11400000, guid: a11c314a9b4f4a24883ba52f9421a50c, type: 2}
+  - {fileID: 11400000, guid: 3d60d43d22f537946969e53620cf14fc, type: 2}
+  - {fileID: 11400000, guid: a11c314a9b4f4a24883ba52f9421a50c, type: 2}
+  - {fileID: 11400000, guid: 4d31578c5d30776499d59367fca698f6, type: 2}
+  - {fileID: 11400000, guid: d261f5b74e204e14d8be5ff1dcb75d0c, type: 2}
+  - {fileID: 11400000, guid: b763088a8fe1c044abc97d325e271b70, type: 2}
+  - {fileID: 11400000, guid: 987ee5b851cf66843a6ca318c7d17bf7, type: 2}
+  - {fileID: 11400000, guid: 1da7db550cdb6e04da454f1eb0ba5c3e, type: 2}
+  - {fileID: 11400000, guid: 5708812baf1f6dd41a45e8eea19183fd, type: 2}
+  - {fileID: 11400000, guid: f34955432232c744099ebc4e8ba2630f, type: 2}
+  - {fileID: 11400000, guid: f56bb3e6ae26a8e4c8eb2ac9ba4b24cf, type: 2}
+  - {fileID: 11400000, guid: 34bf2206c6c72b1438c4ba294bf50ffe, type: 2}
+  - {fileID: 11400000, guid: 153662a1fd71be9409cb8c5e804ab870, type: 2}

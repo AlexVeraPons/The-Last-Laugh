@@ -26,6 +26,8 @@ public class CoreLoop : MonoBehaviour
     private int _selectedDone = 0;
     private const int _selectedDoneNeeded = 2;
 
+    [SerializeField] private DeckController _playerDeck;
+
     private void OnEnable()
     {
         GameLoop.GameLoopEnded += GameLoopEnded;
@@ -48,10 +50,12 @@ public class CoreLoop : MonoBehaviour
         if (_selectedDone >= _selectedDoneNeeded)
         {
             OnSelectCardsDone?.Invoke();
+            _playerDeck.CopyDeck();
             _currentState = State.Combat;
             OnEnterCombat?.Invoke();
             OnNewDay?.Invoke(_day);
             _selectedDone = 0;
+            _playerDeck.ResetDeck();
         }
     }
 

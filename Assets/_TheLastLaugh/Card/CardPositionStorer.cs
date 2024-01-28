@@ -21,6 +21,7 @@ public class CardPositionStorer : MonoBehaviour
     }
 
     private void Start() {
+        _cardPositions.Clear();
         foreach (Transform child in transform)
         {
             _cardPositions.Add(child.position);
@@ -35,6 +36,7 @@ public class CardPositionStorer : MonoBehaviour
 
     public Vector3 GetCardPosition(int index)
     {
+        Start();
         return _cardPositions[index];
     }
 }

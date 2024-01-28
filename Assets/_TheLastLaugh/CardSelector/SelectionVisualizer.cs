@@ -29,6 +29,7 @@ public class SelectionVisualizer : MonoBehaviour
     private void OnEnable() {
         CoreLoop.OnSelectCards += ShowCard;
 
+
         _confirmButton.OnConfirmButtonClicked+= ConfirmSelection;
         _confirmButton.gameObject.SetActive(false);
 
@@ -43,11 +44,9 @@ public class SelectionVisualizer : MonoBehaviour
         {
             if (selectionZone.IsSelected() == true)
             {
-                Debug.Log("Selected card" + selectionZone.GetCard().name);
                 _selectedCards.Add(selectionZone.GetCard());
             }
         }
-        Debug.Log("Selected cards count" + _selectedCards.Count);
 
         _playerDeck.AddCards(_selectedCards); 
 
@@ -80,6 +79,8 @@ public class SelectionVisualizer : MonoBehaviour
     }
     private void ShowCard()
     {
+        _availableCards.Shuffle();
+
         _background.SetActive(true);
         _text.SetActive(true);
 

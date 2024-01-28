@@ -11,9 +11,12 @@ public class GameLoop : MonoBehaviour
     public static Action GameLoopStarted;
     public static Action GameEnded;
 
+    public static Action OnBossReaction;
+    public static Action OnBossReactionEnded;
+
     [SerializeField] private float _bossReactionTime = 1f;
     [SerializeField] private ConfirmButton _confirmButton;
-    [SerializeField] private int _availableTurns = 5;
+    [SerializeField] private int _availableTurns = 4 ;
 
 
     private enum Turn { Player, Boss }
@@ -48,7 +51,7 @@ public class GameLoop : MonoBehaviour
         StartPlayerTurn();
         GameLoopStarted?.Invoke();
         _sessionOver = false;
-        _currentTurrnIndex = 0;
+        _currentTurrnIndex = 1;
     }
 
     private void PlayerTurnEnded()
@@ -70,15 +73,16 @@ public class GameLoop : MonoBehaviour
     private IEnumerator NewTurn()
     {
         _currentTurrnIndex++;
+        OnBossReaction?.Invoke();
         if (_sessionOver) yield break;
         yield return new WaitForSeconds(_bossReactionTime);
+        OnBossReactionEnded?.Invoke();
         if (_sessionOver) yield break;
         StartPlayerTurn();
     }
 
     private void StartPlayerTurn()
     {
-        _currentTurrnIndex++;
         _currentTurn = Turn.Player;
         OnPlayerTurn?.Invoke();
     }

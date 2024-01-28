@@ -8,11 +8,32 @@ public class DragAndDropFromZones : MonoBehaviour
     private DropZone _currentDropZone;
     private bool _isDragging = false;
     private Card _card;
+
+    private bool _canBeDragged = true;
+
+    private Vector3 _originalScale;
+
+    private void OnEnable() {
+        GameLoop.OnBossReaction += SetCanBeDraggedFalse;
+        GameLoop.OnBossReactionEnded += SetCanBeDraggedTrue;
+    }
+    
+    private void SetCanBeDraggedTrue()
+    {
+        _canBeDragged = true;
+    }
+
+    private void SetCanBeDraggedFalse()
+    {
+        _canBeDragged = false;
+    }
+
     private void Start()
     {
         _initialPosition = transform.position;
         _card = GetComponent<CardVisualizer>().GetCard();
         _currentDropZone = GetComponentInParent<DropZone>();
+        _originalScale = transform.localScale;
     }
 
     private void Update()
@@ -25,7 +46,7 @@ public class DragAndDropFromZones : MonoBehaviour
 
     public void OnMouseClick(Vector2 mousePosition)
     {
-        if (IsMouseOver())
+        if (IsMouseOver() && _canBeDragged)
         {
             _initialPosition = transform.position;
             _isDragging = true;
@@ -64,6 +85,15 @@ public class DragAndDropFromZones : MonoBehaviour
     public void OnMouseMove(Vector2 mousePosition)
     {
         _mousePosition = mousePosition;
+
+        if(IsMouseOver())
+        {
+            transform.localScale = _originalScale * 2f;
+        }
+        else
+        {
+            transform.localScale = _originalScale;
+        }
     }
 
     private bool IsMouseOver()

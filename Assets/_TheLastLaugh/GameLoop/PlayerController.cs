@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     }
     public void StartTurn()
     {
+        Debug.Log("Player turn started");
         PutHandInDeck();
         ShuffleDeck();
         DrawCards(_numberOfCardsToDraw);

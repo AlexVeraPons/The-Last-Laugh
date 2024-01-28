@@ -11,25 +11,23 @@ public class DeckController : MonoBehaviour
     [SerializeField] private bool YesNoShuffle = true;
     [SerializeField] private bool ClearOnStart = false;
     [SerializeField] private bool UseNewDeck = false;
-    [SerializeField] private Deck deck;
-    private Deck _deckInitialState;
+    [SerializeField] protected Deck deck;
+    protected Deck _deckInitialState;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        CoreLoop.OnEnterCombat += CopyDeck;
         CoreLoop.OnExitCombat += ResetDeck;
-        CopyDeck();
+        CoreLoop.OnEnterCombat += ResetDeck;
     }
 
     private void OnDisable()
     {
-        GameLoop.GameLoopStarted -= CopyDeck;
         CoreLoop.OnExitCombat -= ResetDeck;
-
+        CoreLoop.OnEnterCombat -= ResetDeck;
         ResetDeck();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         if (UseNewDeck)
         {
@@ -40,21 +38,18 @@ public class DeckController : MonoBehaviour
         {
             Clear();
         }
+        
+        CopyDeck();
     }
 
-    private void CopyDeck()
+    public void CopyDeck()
     {
         _deckInitialState = Instantiate(deck);
         _deckInitialState.name = deck.name;
-        _deckInitialState.cards = new List<Card>();
-
-        foreach (Card card in deck.cards)
-        {
-            _deckInitialState.AddCard(card);
-        }
+        _deckInitialState.cards = new List<Card>(deck.cards);
     }
 
-    private void ResetDeck()
+    public void ResetDeck()
     {
         if (ResetDeckAfterSession == false) return;
         deck.cards = new List<Card>(_deckInitialState.cards);

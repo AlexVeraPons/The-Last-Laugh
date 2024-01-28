@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,6 +7,17 @@ public class PopulateDeckFromFolder : MonoBehaviour
 {
 
     [SerializeField] private Deck _deckToPopulate;
+
+    private void Start() {
+        PopulateDeck();
+        StartCoroutine(PopulateDeckCoroutine());
+    }
+
+    private IEnumerator PopulateDeckCoroutine()
+    {
+        yield return new WaitForSeconds(0.1f);
+        PopulateDeck();
+    }
 
     private enum Folder
     {
@@ -16,6 +28,7 @@ public class PopulateDeckFromFolder : MonoBehaviour
     [SerializeField] private Folder _type;
     public void PopulateDeck()
     {
+        _deckToPopulate.Clear();
         Card[] cards = new Card[0];
 
         switch (_type)
