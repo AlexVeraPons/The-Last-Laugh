@@ -47,7 +47,7 @@ public class DragAndDropFromZones : MonoBehaviour
             if (dropZone != null)
             {
                 _currentDropZone = dropZone;
-                if (!dropZone.IsFull)
+                if (dropZone.CanFit(_card.startOrrEnd))
                 {
 
                     _initialPosition = transform.position;

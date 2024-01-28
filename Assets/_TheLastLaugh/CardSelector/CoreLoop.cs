@@ -11,6 +11,8 @@ public class CoreLoop : MonoBehaviour
     public static Action OnExitCombat;
 
     public static Action OnEnd;
+
+    public static Action<int> OnNewDay;
     private enum State
     {
         SelectCards,
@@ -20,7 +22,7 @@ public class CoreLoop : MonoBehaviour
 
     private State _currentState = State.Combat;
 
-    private int _day = 0;
+    private int _day = 1;
     private int _selectedDone = 0;
     private const int _selectedDoneNeeded = 2;
 
@@ -33,7 +35,7 @@ public class CoreLoop : MonoBehaviour
 
     private void YouDied()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
     private void Start()
@@ -48,15 +50,16 @@ public class CoreLoop : MonoBehaviour
             OnSelectCardsDone?.Invoke();
             _currentState = State.Combat;
             OnEnterCombat?.Invoke();
-            _selectedDone = 0;        }
+            OnNewDay?.Invoke(_day);
+            _selectedDone = 0;
+        }
     }
 
     private void GameLoopEnded()
     {
         _day++;
-        if (_day < 5)
+        if (_day != 6)
         {
-            Debug.Log("Day " + _day);
             _currentState = State.SelectCards;
             OnExitCombat?.Invoke();
             OnSelectCards?.Invoke();
